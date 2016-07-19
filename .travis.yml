@@ -1,1 +1,4 @@
 language: lisp
+
+after_success:
+  - bash build-documentation-pages.sh
