@@ -12,7 +12,7 @@ rev=$(git rev-parse --short HEAD)
 
 mkdir -p stage/_book
 
-# command -v texi2any >/dev/null 2>&1 || { echo >&2 "I require texi2any but it's not installed.  Aborting."; exit 1; }
+command -v texi2any >/dev/null 2>&1 || { echo >&2 "I require texi2any but it's not installed.  Aborting."; exit 1; }
 texi2any --html clx.texinfo -o stage/_book
 
 cd stage/_book
