@@ -15,9 +15,10 @@ mkdir -p stage/_book
 dpkg -L texinfo
 
 command -v texi2any >/dev/null 2>&1 || { echo >&2 "I require texi2any but it's not installed.  Aborting."; exit 1; }
-texi2any --html clx.texinfo -o stage/_book
+texi2any --html --css-ref=style.css clx.texinfo -o stage/_book
 
 cd stage/_book
+cp ../../style.css ./
 
 git init
 git config user.name "Documentation Bot"
