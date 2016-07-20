@@ -4,8 +4,9 @@ sudo: required
 notifications:
   - email: false
 
-install:
-  - sudo apt-get install texinfo
+before_install:
+  - sudo apt-get install -y texinfo
+
 script:
 
 after_success:
