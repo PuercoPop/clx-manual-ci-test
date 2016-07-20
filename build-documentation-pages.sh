@@ -21,7 +21,14 @@ git remote add upstream "https://$GH_TOKEN@github.com/PuercoPop/clx-manual-ci-te
 git fetch upstream
 git reset upstream/gh-pages
 
-# echo "rustbyexample.com" > CNAME
+text2any_path=$(which texi2any)
+
+if [ -x "$texi2any_path" ]
+then
+    echo "texi2any found"
+else
+    echo "texi2any not found"
+fi
 
 texi2any --html clx.texinfo -o ./
 
