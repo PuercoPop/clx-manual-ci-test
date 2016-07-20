@@ -11,6 +11,10 @@ fi
 rev=$(git rev-parse --short HEAD)
 
 mkdir -p stage/_book
+
+command -v texi2any >/dev/null 2>&1 || { echo >&2 "I require texi2any but it's not installed.  Aborting."; exit 1; }
+texi2any --html clx.texinfo -o stage/_book
+
 cd stage/_book
 
 git init
@@ -21,17 +25,7 @@ git remote add upstream "https://$GH_TOKEN@github.com/PuercoPop/clx-manual-ci-te
 git fetch upstream
 git reset upstream/gh-pages
 
-text2any_path=$(which texi2any)
-
-if [ -x "$texi2any_path" ]
-then
-    echo "texi2any found"
-else
-    echo "texi2any not found"
-fi
-
-texi2any --html clx.texinfo -o ./
-
+touch .
 git add -A .
 git commit -m "rebuild pages at ${rev}"
 git push -q upstream HEAD:gh-pages
